@@ -18,14 +18,16 @@ export const ThemeChange: any = ({ children }: any) => {
     localStorage.getItem("link") ? JSON.parse(localStorage.getItem("link") || "") : themes.link
   );
   const [burger, setBurger] = useState(
-    localStorage.getItem("burger") ? JSON.parse(localStorage.getItem("burger") || "") : "light"
+    localStorage.getItem("burger") ? JSON.parse(localStorage.getItem("burger") || "") : "dark"
   );
+
+  console.log(typeof burger)
 
   const toggleTheme = () => {
     setTheme(theme.type === "light" ? themes.dark : themes.light);
     setLink(theme.color === "white" ? themes.noLink : themes.link);
     setPosition(position.type === "column" ? themes.row : themes.column);
-    setBurger(burger === "light" ? "dark" : "light");
+    setBurger(burger === "dark" ? "light" : "dark");
   };
 
   useEffect(() => {

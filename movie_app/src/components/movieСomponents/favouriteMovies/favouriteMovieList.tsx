@@ -11,6 +11,7 @@ export const FavouriteMoviesList = () => {
   const theme = useTheme();
   const favourites = useSelector((state: any = []) => state.favouriteMovies.favouriteMovies);
 
+
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);

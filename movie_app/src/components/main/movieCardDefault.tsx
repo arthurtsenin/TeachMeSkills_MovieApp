@@ -28,7 +28,7 @@ export const MovieCardDefault = ({ movie }: any) => {
           </TitleContainer>
         </Card.Body>
       </LinkContainer>
-      <ActionButton disabled={favouriteDisabled} action={addFavouriteMoviesAction(movie)} text={"Add to favourites"} />
+      <ActionButton  disabled={favouriteDisabled} action={addFavouriteMoviesAction(movie)} text={"Add to favourites"} />
     </CardContainer>
   );
 };

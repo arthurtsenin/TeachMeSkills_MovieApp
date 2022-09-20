@@ -3,19 +3,15 @@ export const themes: any = {
     type: "light",
     color: "white",
     background: "rgba(7,6,18,0.8)",
-    padding:"10px",
-    borderRadius:"white",
-    variant:"light",
-
+    padding: "10px",
+    borderRadius: "white",
   },
   dark: {
     type: "dark",
     color: "black",
     background: "#edefee",
     boxShadow: "1px 1px 5px gray",
-    padding:"10px",
-    variant:"dark",
-
+    padding: "10px",
   },
   row: {
     type: "row",
@@ -40,5 +36,4 @@ export const themes: any = {
   noLink: {
     color: "black",
   },
-
 };

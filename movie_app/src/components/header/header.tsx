@@ -15,9 +15,9 @@ export const Header = ({ title, search, setSearch }: any) => {
   const theme = useTheme();
   const favourites = useSelector((state: any = []) => state.favouriteMovies.favouriteMovies);
   const isLoggedIn = useSelector((state: any) => !!state.auth.authData.accessToken);
-
+console.log(theme.changeBurger)
   return (
-    <Navbar style={theme.changeTheme} fixed="top" expand="lg" variant={theme.changeBurger}>
+    <Navbar style={theme.changeTheme} fixed="top" expand="lg"  variant={theme.changeBurger}>
       <Container fluid>
         <Link to="/">
           <Logo>{title}</Logo>
