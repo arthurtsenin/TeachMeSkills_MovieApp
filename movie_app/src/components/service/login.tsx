@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState,ChangeEvent } from "react";
 import { Form, Modal } from "react-bootstrap";
 import styled from "styled-components";
 
@@ -7,7 +7,7 @@ import { useTheme } from "../theme/ThemeContext";
 import { IRootState, useAppDispatch } from "../redux/store";
 import { loginUser } from "../redux/actionCreators";
 
-import { LogButton } from "./modal.styled";
+import { LogButton } from "./logButton.styled";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -40,22 +40,20 @@ export const Login = () => {
               <Form.Label>Login:</Form.Label>
               <Form.Control
                 value={login}
-                onChange={(e) => setLogin(e.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setLogin(event.target.value)}
                 type="text"
                 placeholder="Enter login"
               />
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)}
                 type="password"
                 placeholder="Password"
               />
             </Form.Group>
-
             <LogButton variant="secondary" type="submit">
               Enter
             </LogButton>

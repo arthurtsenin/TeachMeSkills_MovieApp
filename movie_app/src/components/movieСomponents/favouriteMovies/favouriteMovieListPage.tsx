@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { useTheme } from "../../theme/ThemeContext";
-import { FavouriteMoviesList } from "./favouriteMovieList";
+import { FavouriteMovieList } from "./favouriteMovieList";
 
 import { FavouritesListTitle } from "./favouriteMovies.styled";
 import { PageContainer } from "../singleMovie/singleMovie.styled";
+import { IRootState } from "../../redux/store";
 
-export const FavouriteMoviesListPage = () => {
+export const FavouriteMovieListPage = () => {
   const theme = useTheme();
-  const favourites = useSelector((state: any = []) => state.favouriteMovies.favouriteMovies);
+  const favourites = useSelector((state: IRootState) => state.favouriteMovies.favouriteMovies);
 
   useEffect(() => {
     localStorage.setItem("favourites", JSON.stringify(favourites));
@@ -22,7 +23,7 @@ export const FavouriteMoviesListPage = () => {
         My favourite movies
         <hr />
       </FavouritesListTitle>
-      <FavouriteMoviesList />
+      <FavouriteMovieList />
     </PageContainer>
   );
 };

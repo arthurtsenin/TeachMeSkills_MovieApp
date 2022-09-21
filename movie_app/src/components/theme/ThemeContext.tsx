@@ -7,7 +7,8 @@ export const useTheme = () => {
   return useContext(ThemeContext);
 };
 
-export const ThemeChange: any = ({ children }: any) => {
+export const ThemeChange = ({ children }: any) => {
+  console.log(children)
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? JSON.parse(localStorage.getItem("theme") || "") : themes.light
   );
@@ -20,8 +21,6 @@ export const ThemeChange: any = ({ children }: any) => {
   const [burger, setBurger] = useState(
     localStorage.getItem("burger") ? JSON.parse(localStorage.getItem("burger") || "") : "dark"
   );
-
-  console.log(typeof burger)
 
   const toggleTheme = () => {
     setTheme(theme.type === "light" ? themes.dark : themes.light);

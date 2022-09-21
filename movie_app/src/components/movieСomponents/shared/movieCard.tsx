@@ -6,18 +6,19 @@ import styled from "styled-components";
 
 import { addFavouriteMoviesAction, removeFavouriteMoviesAction } from "../../redux/moviesReducer";
 import { IRootState } from "../../redux/store";
+import { MovieProps, StyleProps } from "../../service/types";
 import { ActionButton } from "../../shared/actionButton";
 import { useTheme } from "../../theme/ThemeContext";
 
-import { CardContainer } from "../movies/movies.styled";
+import { CardContainer } from "../searchMovies/searchMovie.styled";
 
-export const MovieCard = ({ movie }: any) => {
+export const MovieCard = ({ movie }: { movie: MovieProps; style: StyleProps }) => {
   const theme = useTheme();
-  const favourites = useSelector((state: any = []) => state.favouriteMovies.favouriteMovies);
-  const isLoggedIn = useSelector((state: any) => !!state.auth.authData.accessToken);
+  const favourites = useSelector((state: IRootState) => state.favouriteMovies.favouriteMovies);
+  const isLoggedIn = useSelector((state: IRootState) => !!state.auth.authData.accessToken);
   const { favouriteMovies } = useParams();
-  
-  let storedMovie = favourites.find((item: any) => item.imdbID === movie.imdbID);
+
+  let storedMovie = favourites.find((item: MovieProps) => item.imdbID === movie.imdbID);
   const favouriteDisabled = storedMovie ? true : false;
 
   return (

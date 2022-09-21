@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import {  Modal } from "react-bootstrap";
 
-import { LogButton } from "./modal.styled";
+import { LogButton } from "./logButton.styled";
+import { ErrorProps } from "./types";
 
-
-export interface Error {
-  error: string;
-}
-
-export const ErrorModalPopUp = (error: Error) => {
+export const ErrorModalPopUp = (error: ErrorProps) => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);

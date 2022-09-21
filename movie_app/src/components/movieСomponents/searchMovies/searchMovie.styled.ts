@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Card } from "react-bootstrap";
 
-export const MovieListContainer = styled.div`
+export const SearchMovieListContainer = styled.div`
   padding-top: 70px;
 `;
 

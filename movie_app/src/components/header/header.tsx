@@ -1,23 +1,26 @@
-import React, { FormEvent } from "react";
+import React, { ChangeEvent, Dispatch } from "react";
 import { Container, Form, Nav, Navbar } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { IRootState, useAppDispatch } from "../redux/store";
+import { IRootState } from "../redux/store";
 import { useTheme } from "../theme/ThemeContext";
 import { Login } from "../service/login";
 import { Logout } from "../service/logout";
 
 import { FavouritesTitle, Logo, FavouritesCounter, FormContainer, FormControl, FormCheck } from "./header.styled";
+import { HeaderProps } from "../service/types";
 
-export const Header = ({ title, search, setSearch }: any) => {
+
+
+export const Header = ({ title, search, setSearch }: HeaderProps) => {
   const theme = useTheme();
-  const favourites = useSelector((state: any = []) => state.favouriteMovies.favouriteMovies);
-  const isLoggedIn = useSelector((state: any) => !!state.auth.authData.accessToken);
-console.log(theme.changeBurger)
+  const favourites = useSelector((state: IRootState) => state.favouriteMovies.favouriteMovies);
+  const isLoggedIn = useSelector((state: IRootState) => !!state.auth.authData.accessToken);
+
   return (
-    <Navbar style={theme.changeTheme} fixed="top" expand="lg"  variant={theme.changeBurger}>
+    <Navbar style={theme.changeTheme} fixed="top" expand="lg" variant={theme.changeBurger}>
       <Container fluid>
         <Link to="/">
           <Logo>{title}</Logo>
@@ -37,7 +40,7 @@ console.log(theme.changeBurger)
             <Link to="/">
               <FormControl
                 value={search}
-                onChange={(event: any) => {
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
                   event.preventDefault();
                   setSearch(event.target.value);
                 }}

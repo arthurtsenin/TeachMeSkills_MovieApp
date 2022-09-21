@@ -6,10 +6,10 @@ import styled from "styled-components";
 
 import { IRootState, useAppDispatch } from "../redux/store";
 import { logoutUser } from "../redux/actionCreators";
-import { LogButton } from "./modal.styled";
+import { LogButton } from "./logButton.styled";
 
 export const Logout = () => {
-  const profile = useSelector((state: any) => state.auth.profileData.profile);
+  const profile = useSelector((state: IRootState) => state.auth.profileData.profile);
   const dispatch = useAppDispatch();
   const [show, setShow] = useState(false);
 

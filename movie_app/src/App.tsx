@@ -15,16 +15,16 @@ import { Footer } from "./components/footer/footer";
 import { IRootState, useAppDispatch } from "./components/redux/store";
 
 import { getProfile } from "./components/redux/actionCreators";
-import { MoviePage } from "./components/movieСomponents/movies/movieListPage";
+import { SearchMovieListPage } from "./components/movieСomponents/searchMovies/searchMovieListPage";
 import { SingleMoviePage } from "./components/movieСomponents/singleMovie/singleMoviePage";
-import { FavouriteMoviesListPage } from "./components/movieСomponents/favouriteMovies/favouriteMovieListPage";
+import { FavouriteMovieListPage } from "./components/movieСomponents/favouriteMovies/favouriteMovieListPage";
 
 function App() {
   const [searchMovie, setSearchMovie] = useState(
     localStorage.getItem("search") ? JSON.parse(localStorage.getItem("search") || "") : ""
   );
   const [error, setError] = useState("");
-  const isLoggedIn = useSelector((state: any) => !!state.auth.authData.accessToken);
+  const isLoggedIn = useSelector((state: IRootState) => !!state.auth.authData.accessToken);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -41,16 +41,16 @@ function App() {
         {error === "" ? null : <ErrorModalPopUp error={error} />}
         <Header search={searchMovie} setSearch={setSearchMovie} title="My Movie App" />
         <Routes>
-          <Route path="/" element={<MoviePage setError={setError} searchMovie={searchMovie} />} />
+          <Route path="/" element={<SearchMovieListPage setError={setError} searchMovie={searchMovie} />} />
           {isLoggedIn ? (
             <Route path="/movieList/:id" element={<SingleMoviePage />} />
           ) : (
-            <Route path="/" element={<MoviePage setError={setError} searchMovie={searchMovie} />} />
+            <Route path="/" element={<SearchMovieListPage setError={setError} searchMovie={searchMovie} />} />
           )}
           {isLoggedIn ? (
-            <Route path="/:favouriteMovies" element={<FavouriteMoviesListPage />} />
+            <Route path="/:favouriteMovies" element={<FavouriteMovieListPage />} />
           ) : (
-            <Route path="/" element={<MoviePage setError={setError} searchMovie={searchMovie} />} />
+            <Route path="/" element={<SearchMovieListPage setError={setError} searchMovie={searchMovie} />} />
           )}
         </Routes>
         <Footer />

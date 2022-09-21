@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { addFavouriteMoviesAction, removeFavouriteMoviesAction } from "../../redux/moviesReducer";
+import { IRootState } from "../../redux/store";
+import { singleMovieProps } from "../../service/types";
 import { ActionButton } from "../../shared/actionButton";
 
 import {
@@ -20,25 +22,9 @@ import {
   SingleMoviePlot,
 } from "./singleMovie.styled";
 
-export const MovieCard = ({
-  singleMovie,
-  Title,
-  Year,
-  Poster,
-  BoxOffice,
-  Awards,
-  imdbRating,
-  Genre,
-  Country,
-  Runtime,
-  Director,
-  Actors,
-  Rated,
-  Plot,
-}: any) => {
-  const favourites = useSelector((state: any = []) => state.favouriteMovies.favouriteMovies);
-
-  let storedMovie = favourites.find((item: any) => item.imdbID === singleMovie.imdbID);
+export const MovieCard = ({ singleMovie }: { singleMovie: singleMovieProps }) => {
+  const favourites = useSelector((state: IRootState) => state.favouriteMovies.favouriteMovies);
+  const storedMovie = favourites.find((item: singleMovieProps) => item.imdbID === singleMovie.imdbID);
   const favouriteDisabled = storedMovie ? true : false;
   const movieDisabled = storedMovie ? false : true;
 
@@ -46,7 +32,7 @@ export const MovieCard = ({
     <SingleMovieContainer>
       <SingleMovieTitle>
         <SingleMovieTitleText>
-          {Title}({Year})
+          {singleMovie.Title}({singleMovie.Year})
         </SingleMovieTitleText>
         <SingleMovieButtons>
           <ActionButton
@@ -63,46 +49,46 @@ export const MovieCard = ({
       </SingleMovieTitle>
       <SingleMovieContent>
         <SingleMoviePoster>
-          <img src={Poster} alt="Poster not found" />
+          <img src={singleMovie.Poster} alt="Poster not found" />
         </SingleMoviePoster>
         <SingleMovieInfo>
           <SingleMovieInfoText>
             <SingleMovieInfoTitle>BoxOffice:</SingleMovieInfoTitle>
-            {Title}{" "}
+            {singleMovie.Title}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>BoxOffice:</SingleMovieInfoTitle> {BoxOffice}
+            <SingleMovieInfoTitle>BoxOffice:</SingleMovieInfoTitle> {singleMovie.BoxOffice}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Awards:</SingleMovieInfoTitle> {Awards}
+            <SingleMovieInfoTitle>Awards:</SingleMovieInfoTitle> {singleMovie.Awards}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>imdbRating:</SingleMovieInfoTitle> {imdbRating}
+            <SingleMovieInfoTitle>imdbRating:</SingleMovieInfoTitle> {singleMovie.imdbRating}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Genre:</SingleMovieInfoTitle> {Genre}
+            <SingleMovieInfoTitle>Genre:</SingleMovieInfoTitle> {singleMovie.Genre}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Year:</SingleMovieInfoTitle> {Year}
+            <SingleMovieInfoTitle>Year:</SingleMovieInfoTitle> {singleMovie.Year}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Country:</SingleMovieInfoTitle> {Country}
+            <SingleMovieInfoTitle>Country:</SingleMovieInfoTitle> {singleMovie.Country}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Runtime:</SingleMovieInfoTitle> {Runtime}
+            <SingleMovieInfoTitle>Runtime:</SingleMovieInfoTitle> {singleMovie.Runtime}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Director:</SingleMovieInfoTitle> {Director}
+            <SingleMovieInfoTitle>Director:</SingleMovieInfoTitle> {singleMovie.Director}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Actors:</SingleMovieInfoTitle> {Actors}
+            <SingleMovieInfoTitle>Actors:</SingleMovieInfoTitle> {singleMovie.Actors}
           </SingleMovieInfoText>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>Rated:</SingleMovieInfoTitle> {Rated}
+            <SingleMovieInfoTitle>Rated:</SingleMovieInfoTitle> {singleMovie.Rated}
           </SingleMovieInfoText>
         </SingleMovieInfo>
       </SingleMovieContent>
-      <SingleMoviePlot> {Plot}</SingleMoviePlot>
+      <SingleMoviePlot> {singleMovie.Plot}</SingleMoviePlot>
     </SingleMovieContainer>
   );
 };
