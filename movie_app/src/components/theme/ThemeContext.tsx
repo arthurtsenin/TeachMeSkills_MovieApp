@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { childrenProps } from "../service/types";
 import { themes } from "./themes";
 
 export const ThemeContext = React.createContext(themes.light);
@@ -7,8 +8,7 @@ export const useTheme = () => {
   return useContext(ThemeContext);
 };
 
-export const ThemeChange = ({ children }: any) => {
-  console.log(children)
+export const ThemeChange = ({ children }: childrenProps) => {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? JSON.parse(localStorage.getItem("theme") || "") : themes.light
   );

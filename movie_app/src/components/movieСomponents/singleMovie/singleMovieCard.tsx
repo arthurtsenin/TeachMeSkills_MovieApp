@@ -53,7 +53,7 @@ export const MovieCard = ({ singleMovie }: { singleMovie: singleMovieProps }) =>
         </SingleMoviePoster>
         <SingleMovieInfo>
           <SingleMovieInfoText>
-            <SingleMovieInfoTitle>BoxOffice:</SingleMovieInfoTitle>
+            <SingleMovieInfoTitle>Title:</SingleMovieInfoTitle>
             {singleMovie.Title}
           </SingleMovieInfoText>
           <SingleMovieInfoText>

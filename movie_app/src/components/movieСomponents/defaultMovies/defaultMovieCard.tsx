@@ -10,8 +10,7 @@ import { IRootState } from "../../redux/store";
 import { CardContainer, LinkContainer, ImgContainer, TitleContainer } from "./defaultMovieCard.styled";
 import { MovieProps } from "../../service/types";
 
-export const DefaultMovieCard = ( {movie} : {movie:MovieProps}) => {
-
+export const DefaultMovieCard = ({ movie }: { movie: MovieProps }) => {
   const theme = useTheme();
   const favourites = useSelector((state: IRootState) => state.favouriteMovies.favouriteMovies);
   const isLoggedIn = useSelector((state: IRootState) => !!state.auth.authData.accessToken);

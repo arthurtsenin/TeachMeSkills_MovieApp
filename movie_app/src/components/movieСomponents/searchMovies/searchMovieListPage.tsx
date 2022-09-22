@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -12,9 +12,9 @@ import { DefaultMovieList } from "../defaultMovies/defaultMovieList";
 
 import { PageContainer } from "../singleMovie/singleMovie.styled";
 import { IRootState } from "../../redux/store";
+import { SearchMovieListPageProps } from "../../service/types";
 
-
-export const SearchMovieListPage = ({ setError, searchMovie }: any) => {
+export const SearchMovieListPage = ({ setError, searchMovie } : SearchMovieListPageProps) => {
   const dispatch = useDispatch();
   const movies = useSelector((state: IRootState) => state.movies.movies);
   const favourites = useSelector((state: IRootState) => state.favouriteMovies.favouriteMovies);
@@ -30,8 +30,7 @@ export const SearchMovieListPage = ({ setError, searchMovie }: any) => {
         dispatch(addMoviesAction(response.data.Search));
       }
       setIsLoading(false);
-    } catch (err: unknown) {
-      console.log(err)
+    } catch (err: any) {
       setError(String(err));
       setIsLoading(false);
     }
